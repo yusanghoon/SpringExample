@@ -17,7 +17,9 @@ public class UsedGoodsBO {
 	
 	//Used_goods 테이블을 전체 데이터 조회
 	public List<UsedGoods> getUsedGoodsList() {
+		
 		List<UsedGoods> usedGoodsList = usedGoodsDAO.selectUsedGoodsList();
+		
 		return usedGoodsList ;
 	}
 	

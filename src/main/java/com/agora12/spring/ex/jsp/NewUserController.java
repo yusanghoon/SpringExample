@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.agora12.spring.ex.jsp.bo.NewUserBO;
 import com.agora12.spring.ex.jsp.model.NewUser;
@@ -34,17 +33,31 @@ public class NewUserController {
 	
 //	@RequestMapping(path="/add", method=RequestMethod.POST)
 	@PostMapping("/add")
-	@ResponseBody
+//	@ResponseBody
 	public String addUser(
 			@RequestParam("name") String name
 			, @RequestParam("birthday") String birthday
 			, @RequestParam("email") String email
-			, @RequestParam("introduce") String introduce) {
+			, @RequestParam("introduce") String introduce
+			, Model model) {
 		
-		int count =  newUserBO.addUser(name, birthday, email, introduce);
+//		int count =  newUserBO.addUser(name, birthday, email, introduce);
+//		
+//		return "삽입결과 : " + count;		
+
+		NewUser user = new NewUser();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		user.setIntroduce(introduce);
 		
-		return "삽입결과 : " + count;		
-				
+		newUserBO.addUserByObject(user);
+		
+		model.addAttribute("user",user);
+		
+		return "jsp/last";	
+		// 
+		
 	}
 	
 	@GetMapping("/input")

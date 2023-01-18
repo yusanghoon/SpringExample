@@ -48,6 +48,31 @@
   		
   	</insert>
   
+  	<insert id="insertUserByObject" parameterType="com.agora12.spring.ex.jsp.model.NewUser"
+  	useGeneratedKeys="true" keyProperty="id">
+  		INSERT INTO
+  			`new user`
+  			(
+  				`name`
+  				,`yyyymmdd`
+  				,`email`
+  				,`introduce`
+  				,`createdAt`
+  				,`updatedAt`
+  			)
+  		VALUE
+  			(
+  			#{name}
+  			,#{yyyymmdd}
+  			,#{email}
+  			,#{introduce}
+  			,now()
+  			,now()
+  			)
+  	
+  	</insert>
+  
+  
   
   
   
